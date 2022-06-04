@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS</title>
@@ -16,43 +17,42 @@
         </div>
         <div class="game">
             <div class="view">
-                <div class="player">
+                <div class="player" id="player">
+                    <a class="name">Player</a>
                     <div class="weapon-image">
                         <img src="./images/rock.jpg" id="player-weapon-image">
                         <p class="weapon-desc" id="player-weapon">Rock</p>
                     </div>
-                    <div class="weapons">
-                        <button class="weapon-button" id="rock-button">Rock</button>
-                        <button class="weapon-button" id="paper-button">Paper</button>
-                        <button class="weapon-button" id="scissors-button">Scissors</button>
-                    </div>
-                    Player
-                    <div id="#counter">
+                    <div class="counter">
+                        <h2>Score: </h2>
                         <p class="count" id="player-score"></p>
                     </div>
                 </div>
             </div>
-            <div class="go-button">
+            <div class="buttons">
+                    <button class="weapon-button" id="rock-button">Rock</button>
+                    <button class="weapon-button" id="paper-button">Paper</button>
+                    <button class="weapon-button" id="scissors-button">Scissors</button>
                 <button id="go-button">GO</button>
             </div>
             <div class="view">
-                <div class="Opponent">
+                <div class="player" id="opponent">
+                    <a class="name">Opponent</a>
                     <div class="weapon-image">
                         <img src="./images/paper.jpg" id="opp-weapon-image">
                         <p class="weapon-desc" id="opp-weapon">Paper</p>
                     </div>
-                    Opponent
                     <div class="counter">
-                        <div id="#counter">
-                            <p class="count" id="opp-score"></p>
-                        </div>
+                        <h2>Score: </h2>
+                        <p class="count" id="opp-score"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        randomWeapon();
+        let playerScore = 0;
+        let oppScore = 0;
         document.getElementById("rock-button").addEventListener("click", function () {
             document.getElementById("player-weapon").innerHTML = "Rock";
             document.getElementById("player-weapon-image").setAttribute("src", "./images/Rock.jpg");
@@ -67,78 +67,80 @@
         });
         document.getElementById("go-button").addEventListener("click", go);
 
-        let playerScore = 0;
-        let oppScore = 0;
-
         function go() {
-            let oppWeapon = document.getElementById("opp-weapon").innerHTML.toString();
-            let playerScore = document.getElementById("player-score").innerHTML.toString();
-            let oppScore = document.getElementById("opp-score").innerHTML.toString();
-            let playerWeapon = document.getElementById("player-weapon").innerHTML.toString();
-
-            randomWeapon();
-            determineWinner;
+            updateGame();
+            determineWinner();
+            updateScore();
         }
-
-        function weaponSelect(weapon) {
-            document.getElementById("player-weapon").innerHTML = weapon;
+        function updateGame() {
+            let oppWeapon = randomWeapon();
+            document.getElementById("opp-weapon").innerHTML = oppWeapon;
+            document.getElementById("opp-weapon-image").setAttribute("src", `./images/${oppWeapon}.jpg`);
         }
         function randomWeapon() {
             const weapons = ["Rock", "Paper", "Scissors"];
-            let opponentWeapon = weapons[getRndInteger(0, 3)];
-            document.getElementById("opp-weapon").innerHTML = opponentWeapon;
-            document.getElementById("opp-weapon-image").setAttribute("src", `./images/${opponentWeapon}.jpg`);
+            oppWeapon = weapons[getRndInteger(0, 3)];
+            return oppWeapon;
         }
         function getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
         }
-        function determineWinner(){
+        function determineWinner() {
+            let playerWeapon = document.getElementById("player-weapon").innerHTML.toString();
+            let oppWeapon = document.getElementById("opp-weapon").innerHTML.toString();
+
             switch (playerWeapon) {
                 case "Rock":
-                    if (oppWeapon == "Paper") {
-                        alert("Paper beats rock. You lose.");
-                        ++oppScore;
-                        break;
+                    if (oppWeapon === "Paper") {
+
+                        oppScore++;
                     }
-                    else if (oppWeapon == playerWeapon) {
-                        alert("TIE");
-                        break;
+                    else if (oppWeapon === playerWeapon) {
+                        //alert("TIE");
                     }
                     else {
-                        alert("Rock beats scissors. You win!");
-                        ++playerScore;
+                        //alert("Rock beats scissors. You win!");
+                        playerScore++;
                     }
+                    break;
                 case "Paper":
-                    if (oppWeapon == "Scissors") {
-                        alert("Scissors beats paper. You lose.");
-                        ++oppscore;
+                    if (oppWeapon === "Scissors") {
+                        //alert("Scissors beats paper. You lose.");
+                        oppScore++;
                         break;
                     }
-                    else if (oppWeapon == playerWeapon) {
-                        alert("TIE");
+                    else if (oppWeapon === playerWeapon) {
+                        //alert("TIE");
                         break;
                     }
                     else {
-                        alert("Paper beats rock. You win!");
-                        ++playerScore;
+                        //alert("Paper beats rock. You win!");
+                        playerScore++;
                         break;
                     }
                 case "Scissors":
-                    if (oppWeapon == "Rock") {
-                        alert("Rock beats scissors. You lose.");
-                        ++oppscore;
+                    if (oppWeapon === "Rock") {
+                        //alert("Rock beats scissors. You lose.");
+                        oppScore++;
                         break;
                     }
-                    else if (oppWeapon == playerWeapon) {
-                        alert("TIE");
+                    else if (oppWeapon === playerWeapon) {
+                        //alert("TIE");
                         break;
                     }
                     else {
-                        alert("Scissors beats paper. You win!");
-                        ++playerScore;
+                        //alert("Scissors beats paper. You win!");
+                        playerScore++;
                         break;
                     }
             }
+        }
+        function backgroundFlash(winner, loser){
+
+        }
+        function updateScore() {
+            document.getElementById("player-score").innerHTML = playerScore;
+            document.getElementById("opp-score").innerHTML = oppScore;
         }
     </script>
 

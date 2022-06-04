@@ -1,13 +1,15 @@
 html{
     max-height: 100vh;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 body{
 text-align: center;
 }
 h1{
-    font-size: 36px;
+    font-size: 38px;
     padding-bottom: 10vh;
+    font-weight: 900;
 }
 .container{
     display: flex;
@@ -23,14 +25,38 @@ h1{
     align-items: center;
     justify-content: space-between;
 }
+.buttons{
+    display: flex;
+    flex-flow: column wrap;
+    gap: 2vh;
+}
 .view{
-    max-width: 400px;
+    width: 400px;
+}
+.player{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.name{
+    font-size: 30px;
+    font-weight: 700;
 }
 .weapon-image{
+    border-radius: 1vh;
     max-width: inherit;
     height: auto;
+    padding: 20px;
 }
 img{
-    max-width: 400px;
-    height: 400px;
+    max-width: 350px;
+    height: 350px;
+    border-radius: 1vh;
+}
+.weapon-desc{
+    font-size: 24px;
+    font-weight: 900;
+}
+.counter{
+    display: flex;
 }
