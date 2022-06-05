@@ -59,4 +59,26 @@ img{
 }
 .counter{
     display: flex;
+    align-items: center;
 }
+.count{
+    font-size: 24px;
+}
+@media only screen and (max-width: 1444px) {
+    .game{
+        flex-direction: column;
+        align-self: center;
+        width: 60vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .weapon-image img{
+        max-width: 250px;
+        height: auto;
+    }
+    .buttons{
+        justify-self: flex-start;
+    }
+
+  }
