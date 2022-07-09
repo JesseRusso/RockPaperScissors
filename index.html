@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <script src="/script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS</title>
 </head>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="counter">
                         <h2>Score: </h2>
-                        <p class="count" id="player-score"></p>
+                        <p class="count" id="player-score">0</p>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,6 @@
                     <button class="weapon-button" id="rock-button">Rock</button>
                     <button class="weapon-button" id="paper-button">Paper</button>
                     <button class="weapon-button" id="scissors-button">Scissors</button>
-                <button id="go-button">GO</button>
             </div>
             <div class="view">
                 <div class="player" id="opponent">
@@ -44,107 +43,16 @@
                     </div>
                     <div class="counter">
                         <h2>Score: </h2>
-                        <p class="count" id="opp-score"></p>
+                        <p class="count" id="opp-score">0</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        let playerScore = 0;
-        let oppScore = 0;
-        document.getElementById("rock-button").addEventListener("click", function () {
-            document.getElementById("player-weapon").innerHTML = "rock".toLocaleUpperCase();
-            document.getElementById("player-weapon-image").setAttribute("src", "./images/rock.jpg");
-        });
-        document.getElementById("paper-button").addEventListener("click", function () {
-            document.getElementById("player-weapon").innerHTML = "paper".toLocaleUpperCase();
-            document.getElementById("player-weapon-image").setAttribute("src", "./images/paper.jpg");
-        });
-        document.getElementById("scissors-button").addEventListener("click", function () {
-            document.getElementById("player-weapon").innerHTML = "scissors".toUpperCase();
-            document.getElementById("player-weapon-image").setAttribute("src", "./images/scissors.jpg");
-        });
-        document.getElementById("go-button").addEventListener("click", go);
-
-        function go() {
-            updateGame();
-            determineWinner();
-            updateScore();
-        }
-        function updateGame() {
-            let oppWeapon = randomWeapon();
-            oppWeapon = oppWeapon;
-            document.getElementById("opp-weapon").innerHTML = oppWeapon.toUpperCase();
-            document.getElementById("opp-weapon-image").src =`./images/${oppWeapon.toString()}.jpg`;
-        }
-        function randomWeapon() {
-            const weapons = ["rock", "paper", "scissors"];
-            oppWeapon = weapons[getRndInteger(0, 3)];
-            return oppWeapon;
-        }
-        function getRndInteger(min, max) {
-            return Math.floor(Math.random() * (max - min)) + min;
-        }
-        function determineWinner() {
-            let playerWeapon = document.getElementById("player-weapon").innerHTML.toString();
-            let oppWeapon = document.getElementById("opp-weapon").innerHTML.toString();
-
-            switch (playerWeapon.toLocaleLowerCase()) {
-                case "rock":
-                    if (oppWeapon.toLowerCase() === "paper") {
-
-                        oppScore++;
-                    }
-                    else if (oppWeapon.toLocaleLowerCase() === playerWeapon.toLocaleLowerCase()) {
-                        //alert("TIE");
-                    }
-                    else {
-                        //alert("Rock beats scissors. You win!");
-                        playerScore++;
-                    }
-                    break;
-                case "paper":
-                    if (oppWeapon.toLocaleLowerCase() === "scissors") {
-                        //alert("Scissors beats paper. You lose.");
-                        oppScore++;
-                        break;
-                    }
-                    else if (oppWeapon.toLocaleLowerCase() === playerWeapon.toLocaleLowerCase()) {
-                        //alert("TIE");
-                        break;
-                    }
-                    else {
-                        //alert("Paper beats rock. You win!");
-                        playerScore++;
-                        break;
-                    }
-                case "scissors":
-                    if (oppWeapon.toLocaleLowerCase() === "rock") {
-                        //alert("Rock beats scissors. You lose.");
-                        oppScore++;
-                        break;
-                    }
-                    else if (oppWeapon.toLocaleLowerCase() === playerWeapon.toLocaleLowerCase()) {
-                        //alert("TIE");
-                        break;
-                    }
-                    else {
-                        //alert("Scissors beats paper. You win!");
-                        playerScore++;
-                        break;
-                    }
-            }
-        }
-        function updateScore() {
-            document.getElementById("player-score").innerHTML = playerScore;
-            document.getElementById("opp-score").innerHTML = oppScore;
-        }
-        function backgroundFlash(winner, loser){
-
-        }
-
-    </script>
-
+    <div class="winner-screen">
+        <p></p>
+        <button>Play Again</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
