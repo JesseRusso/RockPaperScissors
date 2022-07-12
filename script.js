@@ -43,19 +43,23 @@ function updateScore() {
     oppScoreDisplay.innerText = oppScore;
 }
 function checkScores(){
+    let winnerName;
     if (playerScore >= 5){
-        alert("You win!");
-        resetScores();
-        
+        winnerName = "player";
+        //document.getElementsById("end").setAttribute("display", "")
+        endGame();
     }
     else if (oppScore >= 5) {
-        
-        alert("Computer wins");
-        resetScores();
+        winnerName = "computer";
+        document.getElementById('end-game-text').innerText = 'Computer wins. Play again?';
+        endGame();
     }
     return;
 }
-
+function endGame(){
+    document.getElementById('end-game-text').innerText = "You win! Play again?";
+    document.getElementById('end').style.display = "block";
+}
 function playRound() {
     updateGame();
     let playerWeapon = document.getElementById("player-weapon").innerText.toString();
@@ -65,19 +69,16 @@ function playRound() {
         case "rock":
             if (oppWeapon.toLowerCase() === "paper") {
                 oppScore++;
-                updateScore();
             }
             else if (oppWeapon.toLocaleLowerCase() === playerWeapon.toLocaleLowerCase()) {
             }
             else {
                 playerScore++;
-                updateScore();
             }
             break;
         case "paper":
             if (oppWeapon.toLocaleLowerCase() === "scissors") {
                 oppScore++;
-                updateScore();
                 break;
             }
             else if (oppWeapon.toLocaleLowerCase() === playerWeapon.toLocaleLowerCase()) {
@@ -85,13 +86,11 @@ function playRound() {
             }
             else {
                 playerScore++;
-                updateScore();
                 break;
             }
         case "scissors":
             if (oppWeapon.toLocaleLowerCase() === "rock") {
                 oppScore++;
-                updateScore();
                 break;
             }
             else if (oppWeapon.toLocaleLowerCase() === playerWeapon.toLocaleLowerCase()) {
@@ -99,10 +98,10 @@ function playRound() {
             }
             else {
                 playerScore++;
-                updateScore();
                 break;
             }
     }
+    updateScore();
     checkScores();
 }
 
