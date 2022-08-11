@@ -7,16 +7,22 @@ document.getElementById("rock-button").addEventListener("click", function () {
     document.getElementById("player-weapon").innerText = "rock".toLocaleUpperCase();
     document.getElementById("player-weapon-image").setAttribute("src", "./images/rock.jpg");
     playRound();
+    updateScore();
+    checkScores();
 });
 document.getElementById("paper-button").addEventListener("click", function () {
     document.getElementById("player-weapon").innerText = "paper".toLocaleUpperCase();
     document.getElementById("player-weapon-image").setAttribute("src", "./images/paper.jpg");
     playRound();
+    updateScore();
+    checkScores();
 });
 document.getElementById("scissors-button").addEventListener("click", function () {
     document.getElementById("player-weapon").innerText = "scissors".toUpperCase();
     document.getElementById("player-weapon-image").setAttribute("src", "./images/scissors.jpg");
     playRound();
+    updateScore();
+    checkScores();
 });
 
 function updateGame() {
@@ -44,21 +50,24 @@ function updateScore() {
 }
 function checkScores(){
     let winnerName;
-    if (playerScore >= 5){
+    if (playerScore === 5){
         winnerName = "player";
-        //document.getElementsById("end").setAttribute("display", "")
+        document.getElementById('end-game-text').innerText= "Computer wins. Play again?";
         endGame();
     }
-    else if (oppScore >= 5) {
+    else if (oppScore === 5) {
         winnerName = "computer";
-        document.getElementById('end-game-text').innerText = 'Computer wins. Play again?';
+        document.getElementById('end-game-text').innerText= "Computer wins. Play again?";
         endGame();
     }
     return;
 }
 function endGame(){
-    document.getElementById('end-game-text').innerText = "You win! Play again?";
-    document.getElementById('end').style.display = "block";
+    let end = document.getElementById('end');
+    document.getElementById("rock-button").style.display = "none";
+    document.getElementById("scissors-button").style.display = "none";
+    document.getElementById("paper-button").style.display = "none";
+    end.classList.toggle('fade');
 }
 function playRound() {
     updateGame();
@@ -101,10 +110,12 @@ function playRound() {
                 break;
             }
     }
-    updateScore();
-    checkScores();
 }
-
-function backgroundFlash(winner, loser) {
-
-}
+document.getElementById("reset-button").addEventListener("click", function(){
+    let end = document.getElementById('end');
+    document.getElementById("rock-button").style.display = "inline-block";
+    document.getElementById("scissors-button").style.display = "inline-block";
+    document.getElementById("paper-button").style.display = "inline-block";
+    end.classList.toggle('fade');
+    resetScores();
+});
