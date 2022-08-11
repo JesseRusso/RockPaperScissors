@@ -7,22 +7,16 @@ document.getElementById("rock-button").addEventListener("click", function () {
     document.getElementById("player-weapon").innerText = "rock".toLocaleUpperCase();
     document.getElementById("player-weapon-image").setAttribute("src", "./images/rock.jpg");
     playRound();
-    updateScore();
-    checkScores();
 });
 document.getElementById("paper-button").addEventListener("click", function () {
     document.getElementById("player-weapon").innerText = "paper".toLocaleUpperCase();
     document.getElementById("player-weapon-image").setAttribute("src", "./images/paper.jpg");
     playRound();
-    updateScore();
-    checkScores();
 });
 document.getElementById("scissors-button").addEventListener("click", function () {
     document.getElementById("player-weapon").innerText = "scissors".toUpperCase();
     document.getElementById("player-weapon-image").setAttribute("src", "./images/scissors.jpg");
     playRound();
-    updateScore();
-    checkScores();
 });
 
 function updateGame() {
@@ -52,7 +46,7 @@ function checkScores(){
     let winnerName;
     if (playerScore === 5){
         winnerName = "player";
-        document.getElementById('end-game-text').innerText= "Computer wins. Play again?";
+        document.getElementById('end-game-text').innerText= "You win! Play again?";
         endGame();
     }
     else if (oppScore === 5) {
@@ -78,11 +72,14 @@ function playRound() {
         case "rock":
             if (oppWeapon.toLowerCase() === "paper") {
                 oppScore++;
+                break;
             }
             else if (oppWeapon.toLocaleLowerCase() === playerWeapon.toLocaleLowerCase()) {
+                break;
             }
             else {
                 playerScore++;
+                break;
             }
             break;
         case "paper":
@@ -110,6 +107,8 @@ function playRound() {
                 break;
             }
     }
+    updateScore();
+    checkScores();
 }
 document.getElementById("reset-button").addEventListener("click", function(){
     let end = document.getElementById('end');
