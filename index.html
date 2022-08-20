@@ -1,11 +1,15 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/266a5d8226.js" crossorigin="anonymous"></script>
     <title>RPS</title>
 </head>
 
@@ -28,10 +32,15 @@
                     </div>
                 </div>
             </div>
-            <div class="buttons">
-                    <button class="weapon-button" id="rock-button">Rock</button>
-                    <button class="weapon-button" id="paper-button">Paper</button>
-                    <button class="weapon-button" id="scissors-button">Scissors</button>
+            <div>
+                <div>
+                    <button class="icon"><i class="fa-regular fa-hand fa-2xl"></i></button>
+                    <button class="icon"><i class="fa-regular fa-hand-back-fist fa-2xl"></i></button>
+                    <button class="icon"><i class="fa-regular fa-hand-scissors fa-2xl"></i></button>
+                </div>
+                </div>
+            <div>
+                <h1>VS</h1>
             </div>
             <div class="view">
                 <div class="player" id="opponent">
@@ -48,10 +57,11 @@
             </div>
         </div>
     </div>
-    <div id="end"class="overlay">
+    <div id="end" class="overlay">
         <p id="end-game-text">Game Finished. Play again?</p>
         <button id="reset-button" class="reset-button">Play Again</button>
     </div>
 </body>
 <script src="script.js"></script>
+
 </html>
