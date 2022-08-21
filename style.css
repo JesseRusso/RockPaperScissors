@@ -1,14 +1,15 @@
 html{
     max-height: 100vh;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+    box-sizing: border-box;
 }
 body{
 text-align: center;
+margin: 0;
+background-color: lightslategrey;
 }
 h1{
     font-size: 38px;
-    padding-bottom: 10vh;
     font-weight: 900;
 }
 .container{
@@ -17,6 +18,11 @@ h1{
     align-items:center;
     justify-items: center;
 }
+.title{
+    background-color: darkgoldenrod;
+    width: 100vw;
+    margin-bottom: 10vh;
+}
 .game{
     flex-wrap: wrap;
     align-self: center;
@@ -24,6 +30,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: lightslategrey;
 }
 .buttons{
     display: flex;
